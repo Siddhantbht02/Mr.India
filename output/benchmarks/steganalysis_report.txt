@@ -1,0 +1,9 @@
+=== Generative Steganography Steganalysis Benchmark Report ===
+num_samples: 20
+mean_ks_pvalue: 0.4191092914902991
+ks_pass_rate_percent: 85.0
+mean_ad_statistic: 0.3784100594366464
+ad_pass_rate_percent: 90.0
+mean_skewness: -0.007294179725835216
+mean_kurtosis: -0.005316453041875935
+is_undetectable: True
