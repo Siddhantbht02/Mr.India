@@ -27,6 +27,7 @@ class FixedPointDDIMInverter(BaseInversion):
         tol: float = 1e-6,
         max_iter: int = 5,
         eta: float = 0.0,
+        method: str = "fixed_point",
         device: Optional[torch.device] = None,
         dtype: torch.dtype = torch.float32,
     ):
@@ -34,6 +35,7 @@ class FixedPointDDIMInverter(BaseInversion):
         self.tol = tol
         self.max_iter = max_iter
         self.eta = eta
+        self.method = method
 
     def forward(
         self,
@@ -107,6 +109,11 @@ class FixedPointDDIMInverter(BaseInversion):
 
                 # k=0 initialization: standard naive DDIM forward estimate
                 xt_next_k = at_next.sqrt() * x0_t + c2 * et
+
+                method = kwargs.get("method", self.method)
+                if method == "naive" or max_iter == 0:
+                    xs.append(xt_next_k)
+                    continue
 
                 # Iterative Fixed-Point formulation:
                 # x_{t+1}^(k+1) = sqrt(alpha_{t+1}) * x0_t + c2 * eps_theta(x_{t+1}^(k), t+1)

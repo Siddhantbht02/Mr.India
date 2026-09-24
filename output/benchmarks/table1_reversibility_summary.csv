@@ -1,0 +1,8 @@
+Metric,Average,Min,Max,Std_Dev
+Visual Quality (PSNR),45.63 dB,45.63,45.65,0.007
+Structural Similarity (SSIM),0.9999,0.9999,0.9999,0.000
+Perceptual Distance (LPIPS),0.0196,0.0194,0.0197,0.0001
+Inference Latency,0.651 s,0.390,1.030,0.213
+Raw Bit Error Rate,0.0000%,0.0000%,0.0000%,0.000
+Final Decoded BER,0.0000%,0.0000%,0.0000%,0.000
+Extraction Success Rate,100.0%,100.0%,100.0%,--

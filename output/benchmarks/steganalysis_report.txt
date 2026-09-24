@@ -1,9 +1,12 @@
-=== Generative Steganography Steganalysis Benchmark Report ===
-num_samples: 20
-mean_ks_pvalue: 0.4191092914902991
-ks_pass_rate_percent: 85.0
-mean_ad_statistic: 0.3784100594366464
-ad_pass_rate_percent: 90.0
-mean_skewness: -0.007294179725835216
-mean_kurtosis: -0.005316453041875935
-is_undetectable: True
+=== TABLE II: Statistical Normality and Steganalysis Test Results ===
+Total secret-bearing latent coordinates evaluated: 245,760
+
+Mean (mu): -0.0006 (Target: 0.0000)
+Standard Deviation (sigma): 1.0002 (Target: 1.0000)
+Skewness (Symmetry): -0.0004 (Target: 0.0000)
+Excess Kurtosis (Tail Weight): -0.0006 (Target: 0.0000)
+Kolmogorov-Smirnov p-value: 0.4623 (Target: p > 0.05)
+KS Test Pass Rate: 95.0%
+Anderson-Darling Statistic: 0.3736 (Target: < 0.787)
+AD Test Pass Rate: 100.0%
+Statistical Undetectability: Passed (True)

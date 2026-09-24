@@ -1,0 +1,4 @@
+Inversion_Method,Steps,Bit_Error_Rate,Visual_PSNR,Speed
+Naive DDIM Inversion (as in [5]),50,5.852%,35.00 dB,0.37 s
+Direct x0 Shortcut (10 steps),10,0.000%,50.66 dB,0.10 s
+Our Fixed-Point DDIM (50 steps),50,0.000%,45.48 dB,0.52 s

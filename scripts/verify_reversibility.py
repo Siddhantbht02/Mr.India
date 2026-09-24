@@ -247,6 +247,30 @@ def run_reversibility_benchmark(
         print(f"  Mean SSIM: {mean_ssim:.4f} (Target: >= 0.9800)")
         print(f"  Mean Time: {mean_time:.3f} s/image\n")
 
+        # If this is the 50-step benchmark, compute and output Table I summary
+        if steps == 50:
+            step_lpips = [float(r["LPIPS"]) for r in records if r["Steps"] == 50]
+            step_raw_bers = [float(r["BER"]) for r in records if r["Steps"] == 50]
+            success_count = sum(1 for r in records if r["Steps"] == 50 and r["Extraction_Success"])
+            success_rate = (success_count / len(step_bers)) * 100.0
+
+            table1_rows = [
+                {"Metric": "Visual Quality (PSNR)", "Average": f"{np.mean(step_psnrs):.2f} dB", "Min": f"{np.min(step_psnrs):.2f}", "Max": f"{np.max(step_psnrs):.2f}", "Std_Dev": f"{np.std(step_psnrs):.3f}"},
+                {"Metric": "Structural Similarity (SSIM)", "Average": f"{np.mean(step_ssims):.4f}", "Min": f"{np.min(step_ssims):.4f}", "Max": f"{np.max(step_ssims):.4f}", "Std_Dev": f"{np.std(step_ssims):.3f}"},
+                {"Metric": "Perceptual Distance (LPIPS)", "Average": f"{np.mean(step_lpips):.4f}", "Min": f"{np.min(step_lpips):.4f}", "Max": f"{np.max(step_lpips):.4f}", "Std_Dev": f"{np.std(step_lpips):.4f}"},
+                {"Metric": "Inference Latency", "Average": f"{np.mean(step_times):.3f} s", "Min": f"{np.min(step_times):.3f}", "Max": f"{np.max(step_times):.3f}", "Std_Dev": f"{np.std(step_times):.3f}"},
+                {"Metric": "Raw Bit Error Rate", "Average": f"{np.mean(step_raw_bers):.4f}%", "Min": f"{np.min(step_raw_bers):.4f}%", "Max": f"{np.max(step_raw_bers):.4f}%", "Std_Dev": f"{np.std(step_raw_bers):.3f}"},
+                {"Metric": "Final Decoded BER", "Average": f"{mean_ber:.4f}%", "Min": f"{np.min(step_bers):.4f}%", "Max": f"{np.max(step_bers):.4f}%", "Std_Dev": f"{np.std(step_bers):.3f}"},
+                {"Metric": "Extraction Success Rate", "Average": f"{success_rate:.1f}%", "Min": f"{success_rate:.1f}%", "Max": f"{success_rate:.1f}%", "Std_Dev": "--"},
+            ]
+
+            table1_csv_path = os.path.join(output_dir, "table1_reversibility_summary.csv")
+            with open(table1_csv_path, mode="w", newline="", encoding="utf-8") as tf:
+                twriter = csv.DictWriter(tf, fieldnames=["Metric", "Average", "Min", "Max", "Std_Dev"])
+                twriter.writeheader()
+                twriter.writerows(table1_rows)
+            print(f"Table I summary results saved to: {table1_csv_path}\n")
+
     # Direct x_0 Inversion-Extraction Test
     print(f"--- Evaluating Direct x_0 Inversion Extraction ---")
     direct_msg = b"Direct-x0-Inversion-Verification-Secret-Payload"

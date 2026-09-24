@@ -1,0 +1,10 @@
+Statistical_Test,Measured_Value,Normal_Target
+Mean (mu),-0.0006,0.0000
+Standard Deviation (sigma),1.0002,1.0000
+Skewness (Symmetry),-0.0004,0.0000
+Excess Kurtosis (Tail Weight),-0.0006,0.0000
+Kolmogorov-Smirnov p-value,0.4623,p > 0.05 (Pass)
+KS Test Pass Rate,95.0%,>= 80.0%
+Anderson-Darling Statistic,0.3736,< 0.787 (Pass)
+AD Test Pass Rate,100.0%,>= 80.0%
+Statistical Undetectability,Passed (True),--
