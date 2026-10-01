@@ -31,12 +31,12 @@ The pipeline securely embeds secret messages into generated images by modifying 
 graph LR
     subgraph Sender [Embedding Phase]
         M[Secret Message] -->|ECC + Framing| C(Coded Bits)
-        C -->|DPAC Embedder| Z[Latent $z_{stego}$]
+        C -->|DPAC Embedder| Z["Latent z_stego"]
         Z -->|DDIM Generation| S(Stego Image)
     end
     
     subgraph Receiver [Extraction Phase]
-        S2(Stego Image) -->|Fixed-Point DDIM Inversion| Z2[Latent $z'_{stego}$]
+        S2(Stego Image) -->|Fixed-Point DDIM Inversion| Z2["Latent z'_stego"]
         Z2 -->|DPAC Decoder| C2(Extracted Bits)
         C2 -->|ECC Decode| M2[Recovered Message]
     end
