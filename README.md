@@ -1,4 +1,4 @@
-# 🥷 Message-What-Message-
+# 🥷 Mr.India
 **Upgraded Generative Diffusion Steganography Pipeline**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -68,7 +68,7 @@ graph LR
 ## 📂 Directory Structure
 
 ```text
-Message-What-Message-/
+Mr.India/
 ├── inversion/
 │   ├── base_inversion.py          # Abstract inversion interface & alpha scheduling
 │   └── fixed_point_ddim.py        # Iterative fixed-point DDIM inversion solver
@@ -96,8 +96,8 @@ Message-What-Message-/
 Clone the repository and install the required dependencies:
 
 ```bash
-git clone https://github.com/Siddhantbht02/Message-What-Message-.git
-cd Message-What-Message-
+git clone https://github.com/Siddhantbht02/Mr.India.git
+cd Mr.India
 pip install -r requirements.txt
 ```
 
